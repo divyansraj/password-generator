@@ -22,14 +22,20 @@ let passwordLength=10;
 let checkcount=1;
 handleSlider();
 
+setIndicator("#ccc");
+
 function handleSlider(){
     inputSlider.value= passwordLength;
     lengthDisplay.innerText= passwordLength;
+    const min=inputSlider.min;
+    const max=inputSlider.max;
+    inputSlider.style.backgroundSize =( (passwordLength-min)*100/(max-min)) + "% 100%"
 }
 
 
 function setIndicator(color) {
     indicator.style.backgroundColor = color;
+    indicator.style.boxShadow =`0px 0px 12px ${color}`;
 }
 
 
@@ -66,11 +72,11 @@ function calcStrength(){
     if(symbolscaseCheck.checked) hasSym = true;
 
     if (hasUpper && hasLower && (hasSym || hasNum) && passwordLength>=8){
-        setIndicator("#0f0")
+        setIndicator("#3abb1c")
     } else if((hasLower || hasUpper) && (hasNum || hasSym ) && passwordLength>=6){
-        setIndicator("#ff0")
+        setIndicator("#ffa602")
     } else {
-        setIndicator("#f00")
+        setIndicator("#ff4757")
     }
 
 }
